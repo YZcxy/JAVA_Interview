@@ -12,7 +12,7 @@
 
 
 ## JAVA 
-[基础]()//todo   
+[基础](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E5%9F%BA%E7%A1%80.md)
 [集合]()//todo   
 [并发]()//todo   
 [虚拟机]()//todo   

@@ -1,5 +1,11 @@
-# JAVA_Interview
-JAVA面经，面向工资编程。
+# JAVA_Interview  
+
+> JAVA面经，面向工资编程。
+
+对于所有的面试题，问三个W：  
+- What：这究竟是什么东西？
+- Why：为什么这个东西是这样的？
+- How：怎么实现实现/运用这个东西？
 
 [参考CS-Notes](https://github.com/CyC2018/CS-Notes)   
 [JavaBooks](https://github.com/DreamCats/JavaBooks)   

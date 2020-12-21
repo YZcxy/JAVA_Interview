@@ -1,6 +1,10 @@
 # JAVA_Interview
 JAVA面经，面向工资编程。
 
+[参考CS-Notes](https://github.com/CyC2018/CS-Notes)   
+[JavaBooks](https://github.com/DreamCats/JavaBooks)   
+
+
 ## JAVA 
 [基础]()//todo   
 [集合]()//todo   

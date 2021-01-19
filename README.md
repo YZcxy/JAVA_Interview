@@ -16,6 +16,7 @@
 [集合](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E9%9B%86%E5%90%88.md)    
 [并发](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E5%B9%B6%E5%8F%91.md)   
 [虚拟机](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E8%99%9A%E6%8B%9F%E6%9C%BA.md)   
+[内存模型](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.md)  
 [I/O]()//todo   
 
 ## 计算机网络  

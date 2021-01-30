@@ -19,7 +19,7 @@ A：优点如下：
 - 面向切面编程(AOP)： Spring 支持面向切面编程，同时把应用的业务逻辑与系统的服务分离开来。
 - 集成主流框架：Spring 并没有闭门造车，Spring 集成了已有的技术栈，比如 ORM 框架、Logging 日期框架、J2EE、Quartz 和 JDK Timer ，以及其他视图技术。
 - 模块化：Spring 框架是按照模块的形式来组织的。由包和类的命名，就可以看出其所属的模块，开发者仅仅需要选用他们需要的模块即可。
-- 便捷的测试：要 测试一项用Spring开发的应用程序 十分简单，因为测试相关的环境代码都已经囊括在框架中了。更加简单的是，利用 JavaBean 形式的 POJO 类，可以很方便的利用依赖注入来写入测试数据。
+- 便捷的测试：要测试一项用Spring开发的应用程序十分简单，因为测试相关的环境代码都已经囊括在框架中了。更加简单的是，利用 JavaBean 形式的 POJO 类，可以很方便的利用依赖注入来写入测试数据。
 - Web 框架：Spring 的 Web 框架亦是一个精心设计的 Web MVC 框架，为开发者们在 Web 框架的选择上提供了一个除了主流框架比如 Struts 、过度设计的、不流行 Web 框架的以外的有力选项。
 - 事务管理：Spring 提供了一个便捷的事务管理接口，适用于小型的本地事物处理（比如在单 DB 的环境下）和复杂的共同事物处理（比如利用 JTA 的复杂 DB 环境）。
 - 异常处理：Spring 提供一个方便的 API ，将特定技术的异常(由JDBC, Hibernate, 或 JDO 抛出)转化为一致的、Unchecked 异常。
@@ -27,9 +27,9 @@ A：优点如下：
 Q：Spring 框架中都用到了哪些设计模式？  
 A：Spring 框架中使用到了大量的设计模式，下面列举了比较有代表性的：  
 - 代理模式 — 在 AOP 和 remoting 中被用的比较多。
-- 单例模式 — 在 Spring 配置文件中定义的 Bean 默认为单例模式。
+- 单例模式 — 在 Spring 配置文件中定义的 Bean **默认**为单例模式。
 - 模板方法 — 用来解决代码重复的问题。比如 RestTemplate、JmsTemplate、JdbcTemplate 。
-- 前端控制器 — Spring提供了 DispatcherServlet 来对请求进行分发。
+- 前端控制器 — Spring 提供了 DispatcherServlet 来对请求进行分发。
 - 视图帮助(View Helper) — Spring 提供了一系列的 JSP 标签，高效宏来辅助将分散的代码整合在视图里。
 - 依赖注入 — 贯穿于 BeanFactory / ApplicationContext 接口的核心理念。
 - 工厂模式 — BeanFactory 用来创建对象的实例。
@@ -39,24 +39,31 @@ A：Spring 框架中使用到了大量的设计模式，下面列举了比较有
 
 Q：什么是 Spring IoC 容器？  
 A：Spring 框架的核心是 Spring IoC 容器。容器创建 Bean 对象，将它们装配在一起，配置它们并管理它们的完整生命周期。  
+
 - Spring 容器使用**依赖注入**来管理组成应用程序的 Bean 对象。
 - 容器通过读取提供的**配置元数据** Bean Definition 来接收对象进行实例化，配置和组装的指令。
 - 该配置元数据 Bean Definition 可以通过 XML，Java 注解或 Java Config 代码提供。
 ***
 Q：什么是依赖注入？  
 A：在依赖注入（Dependency Injection）中，你**不必主动、手动创建对象**，但必须描述**如何创建**它们。  
+
 - 你不是直接在代码中将组件和服务连接在一起，而是描述配置文件中哪些组件需要哪些服务。
 - 然后，再由 IoC 容器将它们装配在一起。
 ***
 Q：可以通过多少种方式完成依赖注入？  
-A：有三种方式，在 Spring Framework 中，仅使用构造函数和 setter 注入这两种方式。   
+A：有三种方式，在 Spring Framework 中，仅使用构造函数和 setter 注入这两种方式。     
+
 - 接口注入 Interface Injection
 - setter 注入 Setter Injection
 - 构造函数注入 Setter Injection
+
+实际场景中，setting 使用得较多。  
+
 ***
 Q：Spring 中有多少种 IoC 容器？  
-A：Spring 提供了两种 IoC 容器，分别是 BeanFactory、ApplicationContext 。  
-ApplicationContext 接口扩展了 BeanFactory 接口，它在 BeanFactory 基础上提供了一些额外的功能。内置如下功能：  
+A：Spring 提供了两种 IoC 容器，分别是 `BeanFactory`、`ApplicationContext` 。  
+**ApplicationContext 接口扩展了 BeanFactory 接口**，它在 BeanFactory 基础上提供了一些额外的功能。内置如下功能：  
+
 - MessageSource ：管理 message ，实现国际化等功能。
 - ApplicationEventPublisher ：事件发布。
 - ResourcePatternResolver ：多资源加载。
@@ -68,10 +75,19 @@ ApplicationContext 接口扩展了 BeanFactory 接口，它在 BeanFactory 基�
 BeanFactory 也被称为低级容器，而 ApplicationContext 被称为高级容器。  
 ***
 Q：请介绍下常用的容器？  
-A：BeanFactory 最常用的是 `XmlBeanFactory` 。ApplicationContext 最常用的有`ClassPathXmlApplicationContext` 、`FileSystemXmlApplicationContext` 、`XmlWebApplicationContext`、`ConfigServletWebServerApplicationContext` 。  
+A：常用容器如下：   
+
+- BeanFactory 最常用的是 `XmlBeanFactory` ：根据 XML 文件中定义的内容，创建相应的 Bean。
+- ApplicationContext 最常用的有：
+  - `ClassPathXmlApplicationContext`：从 ClassPath 中的 XML 配置文件中读取上下文。
+  - `FileSystemXmlApplicationContext`：有文件系统中的 XML 配置文件读取上下文。
+  - `XmlWebApplicationContext`：由 Web 应用中的 XML文件读取上下文。
+  - `ConfigServletWebServerApplicationContext`：StringBoot 主要使用这种。
+
 ***
 Q：IoC 的一些好处？  
 A：好处如下：  
+
 - 它将最小化应用程序中的代码量。
 - 它以最小的影响和最少的侵入机制促进松耦合。
 - 它支持即时的实例化和延迟加载 Bean 对象。
@@ -198,7 +214,7 @@ A：单纯从 Spring Framework 提供的方式，一共有三种：
 </beans>
 ```
 3. Java Config 配置。
-  Spring 的 Java 配置是通过使用 `@Bean` 和 `@Configuration` 来实现。`@Bean` 注解扮演与 <bean> 元素相同的角色。`@Configuration` 类允许通过简单地调用同一个类中的其他 `@Bean` 方法来定义 Bean 间依赖关系。  
+  Spring 的 Java 配置是通过使用 `@Bean` 和 `@Configuration` 来实现。`@Bean` 注解扮演与 `<bean>` 元素相同的角色。`@Configuration` 类允许通过简单地调用同一个类中的其他 `@Bean` 方法来定义 Bean 间依赖关系。  
 ```java
 @Configuration
 public class StudentConfig {
@@ -211,14 +227,16 @@ public class StudentConfig {
 ***
 Q：Spring 支持几种 Bean Scope ？  
 A：Spring Bean 支持 5 种 Scope ，实际常用的只有 Singleton 和 Prototype 两种级别。  
-- Singleton - 每个 Spring IoC 容器仅有一个单 Bean 实例。默认
+
+- Singleton - 每个 Spring IoC 容器仅有一个单 Bean 实例。**默认**
 - Prototype - 每次请求都会产生一个新的实例。
 - Request - 每一次 HTTP 请求都会产生一个新的 Bean 实例，并且该 Bean 仅在当前 HTTP 请求内有效。
 - Session - 每一个的 Session 都会产生一个新的 Bean 实例，同时该 Bean 仅在当前 HTTP Session 内有效。
 - Application - 每一个 Web Application 都会产生一个新的 Bean ，同时该 Bean 仅在当前 Web Application 内有效。
 ***
-Q：Spring Bean 在容器的生命周期是什么样的？  
+Q：Spring Bean 在容器的**生命周期**是什么样的？  
 A：Spring Bean 的初始化流程如下：  
+
 - 实例化 Bean 对象
   - Spring 容器根据配置中的 Bean Definition(定义)中实例化 Bean 对象。
   - Spring 使用依赖注入填充所有属性，如 Bean 中所定义的配置。
@@ -227,15 +245,16 @@ A：Spring Bean 的初始化流程如下：
   - 如果 Bean 实现 BeanFactoryAware 接口，工厂通过传递自身的实例来调用 `setBeanFactory(BeanFactory beanFactory)` 方法。
 - 调用相应的方法，进一步初始化 Bean 对象
   - 如果存在与 Bean 关联的任何 BeanPostProcessor 们，则调用 `preProcessBeforeInitialization(Object bean, String beanName)` 方法。
-  - 如果 Bean 实现 InitializingBean 接口，则会调用 #afterPropertiesSet() 方法。
-  - 如果为 Bean 指定了 init 方法（例如 <bean /> 的 init-method 属性），那么将调用该方法。
+  - 如果 Bean 实现 InitializingBean 接口，则会调用 `#afterPropertiesSet()` 方法。
+  - 如果为 Bean 指定了 init 方法（例如 `<bean>`  的 init-method 属性），那么将调用该方法。
   - 如果存在与 Bean 关联的任何 BeanPostProcessor 们，则将调用 `postProcessAfterInitialization(Object bean, String beanName)` 方法。
 
 ![](http://static.iocoder.cn/images/Spring/2018-12-24/08.png)
 ***
 Q：什么是 Spring 的内部 bean？   
-A：只有将 Bean 仅用作另一个 Bean 的属性时，才能将 Bean 声明为内部 Bean。  
-- 为了定义 Bean，Spring 提供基于 XML 的配置元数据在 <property>或 <constructor-arg> 中提供了 <bean>元素的使用。
+A：只有将 Bean **仅用作**另一个 Bean 的属性时，才能将 Bean 声明为内部 Bean。  
+
+- 为了定义 Bean，Spring 提供基于 XML 的配置元数据在 `<property>`或`<constructor-arg>` 中提供了 `<bean>`元素的使用。
 - 内部 Bean 总是匿名的，并且它们总是作为原型 Prototype 。  
 ***
 Q：什么是 Spring 装配？  
@@ -246,17 +265,35 @@ A：Spring 容器能够自动装配 Bean 。也就是说，可以通过检查 Be
 自动装配的不同模式：  
 - no - 这是默认设置，表示没有自动装配。应使用显式 Bean 引用进行装配。
 - byName - 它根据 Bean 的名称注入对象依赖项。它匹配并装配其属性与 XML 文件中由相同名称定义的 Bean 。
-- 【最常用】byType - 它根据类型注入对象依赖项。如果属性的类型与 XML 文件中的一个 Bean 类型匹配，则匹配并装配属性。
+- 【**最常用**】byType - 它根据类型注入对象依赖项。如果属性的类型与 XML 文件中的一个 Bean 类型匹配，则匹配并装配属性。
 - 构造函数 - 它通过调用类的构造函数来注入依赖项。它有大量的参数。
 - autodetect - 首先容器尝试通过构造函数使用 autowire 装配，如果不能，则尝试通过 byType 自动装配。
 ***
 Q：解释什么叫延迟加载？   
 A：默认情况下，容器启动之后会将所有作用域为单例的 Bean 都创建好，但是有的业务场景我们并不需要它提前都创建好。此时，我们可以在Bean 中设置 `lzay-init = "true"` 。  
+
 - 这样，当容器启动之后，作用域为单例的 Bean ，就不在创建。
 - 而是在获得该 Bean 时，才真正在创建加载。
 ***
+Q：Spring 框架中的单例 Bean 是线程安全的么？  
+A：Spring 框架并没有对单例 Bean 进行任何多线程的封装处理。当然实际上，大部分的 Spring Bean 并没有可变的状态(比如Serview 类和 DAO 类)，所以相对线程安全。  
+如果你的 Bean 有多种状态的话，就需要自行保证线程安全。最浅显的解决办法，就是将多态 Bean 的作用域( Scope )由 Singleton 变更为 Prototype 。  
+***
+Q：Spring 如何解决循环依赖？  
+A：Spring 只解决 scope 为 singleton 的循环依赖。对于 scope 为 prototype 的 bean ，Spring 无法解决，直接抛出 BeanCurrentlyInCreationException 异常。对于构造器的循环依赖，Spring 也是无法解决的，只能抛出 BeanCurrentlyInCreationException 异常表示循环依赖，能解决基于 field 属性的循环依赖。  
+- 首先 A 完成初始化第一步并将自己提前曝光出来（通过 ObjectFactory 将自己提前曝光），在初始化的时候，发现自己依赖对象 B，此时就会去尝试 get(B)，这个时候发现 B 还没有被创建出来。
+- 然后 B 就走创建流程，在 B 初始化的时候，同样发现自己依赖 C，C 也没有被创建出来。
+- 这个时候 C 又开始初始化进程，但是在初始化的过程中发现自己依赖 A，于是尝试 get(A)，这个时候由于 A 已经添加至缓存中（一般都是添加至三级缓存 singletonFactories ），通过 ObjectFactory 提前曝光，所以可以通过 `ObjectFactory.getObject()` 方法来拿到 A 对象，C 拿到 A 对象后顺利完成初始化，然后将自己添加到一级缓存中。
+- 回到 B ，B 也可以拿到 C 对象，完成初始化，A 可以顺利拿到 B 完成初始化。到这里整个链路就已经完成了初始化过程了。
+***
 
+## Spring 注解
 
+Q：什么是基于注解的容器配置？  
+A：不使用 XML 来描述 Bean 装配，开发人员通过在相关的类，方法或字段声明上使用注解将配置移动到组件类本身。它可以作为 XML 设置的替代方案。Spring 的 Java 配置是通过使用 @Bean 和 @Configuration 来实现。
+***
+Q：如何在 Spring 中启动注解装配？  
+A：默认情况下，Spring 容器中未打开注解装配。要使用基于注解装配，我们必须通过配置 `<context：annotation-config />` 元素在 Spring 配置文件中启用它。
 
 
 

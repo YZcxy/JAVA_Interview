@@ -95,6 +95,7 @@ A：好处如下：
 ***
 Q：简述 Spring IoC 的实现机制？  
 A：简单来说，Spring 中的 IoC 的实现原理，就是工厂模式加反射机制。代码如下：  
+
 ```java
 interface Fruit {
 
@@ -238,12 +239,17 @@ Q：Spring Bean 在容器的**生命周期**是什么样的？
 A：Spring Bean 的初始化流程如下：  
 
 - 实例化 Bean 对象
-  - Spring 容器根据配置中的 Bean Definition(定义)中实例化 Bean 对象。
+  
+  - Spring 使用 `BeanDefinitionReader` 从xml、注解、或者配置类中读取 Bean Definition。
+  
+  - Spring 容器根据配置中的 Bean Definition(定义) 在工厂 (Bean Factory) 中实例化 Bean 对象。
   - Spring 使用依赖注入填充所有属性，如 Bean 中所定义的配置。
+  
 - Aware 相关的属性，注入到 Bean 对象
   - 如果 Bean 实现 BeanNameAware 接口，则工厂通过传递 Bean 的 beanName 来调用 `setBeanName(String name)`  方法。
   - 如果 Bean 实现 BeanFactoryAware 接口，工厂通过传递自身的实例来调用 `setBeanFactory(BeanFactory beanFactory)` 方法。
-- 调用相应的方法，进一步初始化 Bean 对象
+  
+- 调用相应的 BeanPostProcesseror 方法，进一步初始化 Bean 对象
   - 如果存在与 Bean 关联的任何 BeanPostProcessor 们，则调用 `preProcessBeforeInitialization(Object bean, String beanName)` 方法。
   - 如果 Bean 实现 InitializingBean 接口，则会调用 `#afterPropertiesSet()` 方法。
   - 如果为 Bean 指定了 init 方法（例如 `<bean>`  的 init-method 属性），那么将调用该方法。

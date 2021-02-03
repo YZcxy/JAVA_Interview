@@ -5,7 +5,7 @@
 对于所有的面试题，问三个W：  
 - What：这究竟是什么东西？
 - Why：为什么这个东西是这样的？
-- How：怎么实现实现/运用这个东西？
+- How：怎么实现/运用这个东西？
 
 [参考CS-Notes](https://github.com/CyC2018/CS-Notes)   
 [JavaBooks](https://github.com/DreamCats/JavaBooks)   
@@ -34,7 +34,7 @@
 
 ## Spring  
 1. [Spring](https://github.com/YZcxy/JAVA_Interview/blob/main/Spring/Spring.md)  
-2. [Spring MVC]()//todo   
+2. [Spring MVC](https://github.com/YZcxy/JAVA_Interview/blob/main/Spring/Spring%20MVC.md)     
 3. [Spring Boot]()//todo   
 4. [Spring Cloud]()//todo   
 

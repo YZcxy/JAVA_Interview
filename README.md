@@ -40,7 +40,7 @@
 
 ## 数据库    
 1. [数据库原理]()//todo   
-2. [mysql]()//todo   
+2. [mysql](https://github.com/YZcxy/JAVA_Interview/blob/main/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql.md)     
 3. [mybatis]()//todo   
 4. [MongoDB]()//todo   
 5. [Redis]()//todo   

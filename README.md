@@ -16,8 +16,7 @@
 2. [集合](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E9%9B%86%E5%90%88.md)    
 3. [并发](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E5%B9%B6%E5%8F%91.md)   
 4. [JUC](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/JUC.md)   
-5. [虚拟机](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E8%99%9A%E6%8B%9F%E6%9C%BA.md)   
-6. [虚拟机监控与调优](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9B%91%E6%8E%A7%E4%B8%8E%E8%B0%83%E4%BC%98.md)  
+5. [虚拟机](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E8%99%9A%E6%8B%9F%E6%9C%BA.md)     
 7. [内存模型](https://github.com/YZcxy/JAVA_Interview/blob/main/JAVA/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.md)   
 8. [I/O]()//todo   
 
@@ -36,11 +35,11 @@
 1. [Spring](https://github.com/YZcxy/JAVA_Interview/blob/main/Spring/Spring.md)  
 2. [Spring MVC](https://github.com/YZcxy/JAVA_Interview/blob/main/Spring/Spring%20MVC.md)     
 3. [Spring Boot]()//todo   
-4. [Spring Cloud]()//todo   
+4. [Spring Cloud](https://github.com/YZcxy/JAVA_Interview/blob/main/Spring/Spring%20Cloud.md)   
 
 ## 数据库    
 1. [数据库原理]()//todo   
-2. [mysql](https://github.com/YZcxy/JAVA_Interview/blob/main/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql.md)     
+2. [mysql](https://github.com/YZcxy/JAVA_Interview/blob/main/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql.md)      
 3. [mybatis]()//todo   
 4. [MongoDB]()//todo   
 5. [Redis]()//todo   

@@ -42,7 +42,7 @@
 2. [mysql](https://github.com/YZcxy/JAVA_Interview/blob/main/%E6%95%B0%E6%8D%AE%E5%BA%93/Mysql.md)      
 3. [mybatis]()//todo   
 4. [MongoDB]()//todo   
-5. [Redis]()//todo   
+5. [Redis](https://github.com/YZcxy/JAVA_Interview/blob/main/%E6%95%B0%E6%8D%AE%E5%BA%93/Redis.md)   
 6. [SQL语句]()//todo   
 
 ## 中间件  

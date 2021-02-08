@@ -46,7 +46,7 @@
 6. [SQL语句]()//todo   
 
 ## 中间件  
-1. [MQ]()//todo   
+1. [MQ](https://github.com/YZcxy/JAVA_Interview/blob/main/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ.md)     
 2. [Kafka]()//todo   
 3. [Nginx]()//todo   
 

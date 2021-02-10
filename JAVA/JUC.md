@@ -3,6 +3,31 @@
 Q：什么是Java AQS？  
 A：AQS (AbstractQueuedSynchronizer ) 使用一个 FIFO 的队列表示排队等待锁的线程，队列头节点称作“哨兵节点”或者“哑节点”，它不与任何线程关联。其他的节点与等待线程关联，每个节点维护一个等待状态 waitStatus 。它是构建锁或者其他同步组件的基础框架（如 ReentrantLock、ReentrantReadWriteLock、Semaphore 等）  
 ***
+Q：AQS 如何表示同步状态？  
+A：AQS 的主要使用方式是**继承**（其他工具类一般都拥有一个子类（Sync）继承着AbstractQueuedSynchronizer），子类通过继承同步器，并实现它的抽象方法来管理同步状态。  
+AQS 使用一个 int 类型的成员变量 state 来表示同步状态：  
+- 当 state > 0 时，表示已经获取了锁。
+- 当 state = 0 时，表示释放了锁。
+它提供了三个方法，来对同步状态 state 进行操作，并且 AQS 可以确保对 state 的操作是安全的：  
+- `getState()` 返回同步状态的当前值。
+- `setState(int newState)` 设置当前同步状态。
+- `compareAndSetState(int expect, int update)` 使用 CAS 设置当前状态，该方法能够保证状态设置的原子性。
+***
+Q：AQS 的同步队列是怎样的？  
+A：AQS 通过内置的 FIFO 同步队列（CLH）来完成资源获取线程的排队工作：  
+- 如果当前线程获取同步状态失败（锁）时，AQS 则会将当前线程以及等待状态等信息构造成一个节点（Node）并将其加入 CLH 同步队列，同时会阻塞当前线程
+- 当同步状态释放时，则会把首节点中的线程唤醒（公平锁），使其再次尝试获取同步状态。
+***
+Q：CLH 队列中保存着什么？  
+A：CLH 同步队列中存储着首节点和尾节点，每一个节点（Node）就代表着一个线程，它保存着线程的引用（thread）、状态（waitStatus）、前驱节点（prev）、后继节点（next）。  
+![](https://gitee.com/chenssy/blog-home/raw/master/image/sijava/2018120810001.png)
+***
+Q：AQS 中已经实现了哪些功能？  
+A：对于子类而言，它并没有太多的活要做，AQS 已经提供了大量的模板方法来实现同步，主要是分为三类：  
+- 独占式获取和释放同步状态。
+- 共享式获取和释放同步状态。
+- 查询同步队列中的等待线程情况。
+***
 Q：什么是 Java Lock 接口？  
 A：`java.util.concurrent.locks.Lock` 接口，比 `synchronized` 提供更具拓展行的锁操作。它允许更灵活的结构，可以具有完全不同的性质，并且可以支持多个相关类的条件对象。它的优势有：  
 - 可以使锁更公平。

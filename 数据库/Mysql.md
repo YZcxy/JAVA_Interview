@@ -8,6 +8,7 @@ A：区别如下：
 Q：一张表，里面有 ID 自增主键，当 insert 了 17 条记录之后，删除了第 15,16,17 条记录，再把 MySQL 重启，再 insert 一条记录，这条记录的 ID 是 18 还是 15？  
 A：一般情况下，我们创建的表的类型是 InnoDB ，如果新增一条记录（不重启 MySQL 的情况下），这条记录的 ID 是18 ；但是如果重启 MySQL 的话，这条记录的 ID 是 15 。因为 InnoDB 表只把自增主键的最大 ID 记录到内存中，所以重启数据库或者对表 OPTIMIZE 操作，都会使最大 ID 丢失。  
 但是，如果我们使用表的类型是 MyISAM ，那么这条记录的 ID 就是 18 。因为 MyISAM 表会把自增主键的最大 ID 记录到数据文件里面，重启 MYSQL 后，自增主键的最大 ID 也不会丢失。  
+
 ***
 Q：表中有大字段 X(例如：text 类型)，且字段 X 不会经常更新，以读为为主，请问您是选择拆成子表，还是继续放一起?  
 A：拆带来的问题：连接消耗 + 存储拆分空间。不拆可能带来的问题：查询性能。  
@@ -63,13 +64,13 @@ A：InnoDB 是聚簇索引，MyISAM 是非聚簇索引：
 Q：索引的类型有哪些？  
 A：索引，都是实现在存储引擎层面的，主要有六种类型：  
 1. 单列索引：最基本的索引，没有任何约束。  
-  `create index index_name on tbl_name(index_col_name);`  
+    `create index index_name on tbl_name(index_col_name);`  
 2. 唯一索引：与单列索引类似，具有唯一性约束，但允许有空值。  
-  `create unique index index_name on tbl_name(index_col_name,...);`  
+    `create unique index index_name on tbl_name(index_col_name,...);`  
 3. 主键索引：特殊的唯一索引，不允许有空值，不能使用 `create index` 创建。  
-  `alter table tbl_name add primary key(index_col_name);`  
+    `alter table tbl_name add primary key(index_col_name);`  
 4. 复合索引：将多个列组合在一起创建索引，可以覆盖多个列，遵守“最左前缀”原则。  
-  `create index index_name on tbl_name(index_col_name,...);`  
+    `create index index_name on tbl_name(index_col_name,...);`  
 5. 外键索引：只有 InnoDB 类型的表才可以使用外键索引，保证数据的一致性、完整性和实现级联操作。  
 6. 全文索引：MySQL 自带的全文索引只能用于 InnoDB、MyISAM ，并且只能对英文进行全文检索，一般使用全文索引引擎。常用的全文索引引擎的解决方案有 Elasticsearch、Solr 等等。最为常用的是 Elasticsearch 。  
 ***
@@ -101,10 +102,15 @@ Q：什么是 B+Tree 索引？
 A：从上一节中的 B-Tree 结构图中可以看到，每个节点中不仅包含数据的 key 值，还有 data 值。而每一个页的存储空间是有限的，如果 data 数据较大时将会导致每个节点（即一个页）能存储的 key 的数量很小，当存储的数据量很大时同样会导致 B-Tree 的深度较大，增大查询时的磁盘 I/O 次数，进而影响查询效率。在 B+Tree 中，所有数据记录节点都是按照键值大小顺序存放在同一层的叶子节点上，而非叶子节点上只存储 key 值信息，这样可以大大加大每个节点存储的 key 值数量，降低 B+Tree 的高度。  
 ![](http://static.iocoder.cn/259d196856a231aff5e3cf1505848af4)
 ***
+Q：为什么要使用B树？  
+A：红黑树也可以作为索引，为什么要使用B树呢？因为索引查找过程中就要产生磁盘 I/O 消耗，相对于内存存取，I/O 存取的消耗要高几个数量级。所以评价一个数据结构作为索引的优劣最重要的指标就是在查找过程中磁盘 I/O 操作次数的渐进复杂度。
+
+***
 Q：请说说 MySQL 的锁机制？  
 A：表锁是日常开发中的常见问题，当多个查询同一时刻进行数据修改时，就会产生并发控制的问题。MySQL 的共享锁和排他锁，就是读锁和写锁。  
 共享锁：不堵塞，多个用户可以同时读一个资源，互不干扰。  
 排他锁：一个写锁会阻塞其他的读锁和写锁，这样可以只允许一个用户进行写入，防止其他用户读取正在写入的资源。  
+
 ***
 Q：什么是悲观锁？什么是乐观锁？  
 A：定义如下：  

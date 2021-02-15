@@ -135,3 +135,22 @@ A：基本流程如下：
 - 因为事务在修改页时，要先记 undo ，在记 undo 之前要记 undo 的 redo， 然后修改数据页，再记数据页修改的 redo。 redo（里面包括 undo 的修改）一定要比数据页先持久化到磁盘。
 - 当事务需要回滚时，因为有 undo，可以把数据页回滚到前镜像的状态。
 - 崩溃恢复时，如果 redo log 中事务没有对应的 commit 记录，那么需要用 undo 把该事务的修改回滚到事务开始之前。如果有 commit 记录，就用 redo 前滚到该事务完成时并提交掉。
+
+***
+Q：SQL 执行的顺序是怎样的？ 
+A：在SQL语句的执行过程中，每一步都会产生一个虚拟表（Virtual Table，简称VT），用来保存SQL语句的执行结果，以下是上述SQL的执行顺序。  
+```sql
+(7)     SELECT 
+(8)     DISTINCT <select_list>
+(1)     FROM <left_table>
+(3)     <join_type> JOIN <right_table>
+(2)     ON <join_condition>
+(4)     WHERE <where_condition>
+(5)     GROUP BY <group_by_list>
+(6)     HAVING <having_condition>
+(9)     ORDER BY <order_by_condition>
+(10)    LIMIT <limit_number>
+```
+***
+Q：什么是 MVVC?  
+A：多版本并发控制（MVCC），是一种用来解决读-写冲突的无锁并发控制，也就是为事务分配单向增长的时间戳，为每个修改保存一个版本，版本与事务时间戳关联，读操作只读该事务开始前的数据库的快照。 这样在读操作不用阻塞写操作，写操作不用阻塞读操作的同时，避免了脏读和不可重复读。

@@ -55,7 +55,8 @@
 2. [设计模式]()//todo   
 
 ## 系统设计  
-1. [系统设计基础]()//todo   
+1. [系统设计基础]()//todo     
+2. [大型网站技术架构](https://github.com/YZcxy/JAVA_Interview/blob/main/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84.md)   
 
 ## 工具
 1. [git]()//todo   

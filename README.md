@@ -63,4 +63,5 @@
 2. [正则表达式]()//todo    
 
 ## 其他  
-1. [OpenStack](https://github.com/YZcxy/JAVA_Interview/blob/main/%E5%85%B6%E4%BB%96/OpenStack.md)  
+1. [OpenStack](https://github.com/YZcxy/JAVA_Interview/blob/main/%E5%85%B6%E4%BB%96/OpenStack.md)   
+2. [综合能力](https://github.com/YZcxy/JAVA_Interview/blob/main/%E5%85%B6%E4%BB%96/%E7%BB%BC%E5%90%88%E8%83%BD%E5%8A%9B.md)   
